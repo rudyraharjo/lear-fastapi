@@ -1,5 +1,6 @@
+from pydantic.v1 import BaseSettings
 from functools import lru_cache
-from pydantic import BaseSettings
+
 
 class Config(BaseSettings):
     ACCESS_TOKEN_EXPIRATION: int = 5 * 60
@@ -9,14 +10,14 @@ class Config(BaseSettings):
     PUBLIC_KEY: str
     REFRESH_PRIVATE_KEY: str
 
-    DB: str
+    DB_URL: str
     DB_POOL_PRE_PING: bool = True
     DB_POOL_SIZE: int = 20
     DB_POOL_RECYCLE: int = 1800
     DB_ECHO: bool = False
 
     class Config:
-        env_file = '.env'
+        env_file = './.env'
 
 
 @lru_cache
